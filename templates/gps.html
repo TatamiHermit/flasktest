@@ -1,0 +1,102 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>Polyline Replay</title>
+    <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css"/>
+    <link href="{{ url_for('static', filename='gps.css') }}" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+
+
+<div id="container"></div>
+<div class="input-card">
+    <h4>Polyline Replay</h4>
+    <div class="button1">
+        <input type="button" class="btn" value="Replay" id="start" onclick="startAnimation()"/>
+        <input type="button" class="btn" value="Pause" id="pause" onclick="pauseAnimation()"/>
+    </div>
+    <div class="button2">
+        <input type="button" class="btn" value="Continue" id="resume" onclick="resumeAnimation()"/>
+        <input type="button" class="btn" value="Stop" id="stop" onclick="stopAnimation()"/>
+    </div>
+    <div class="input-text">
+        <form method="post">
+            <label>起点: </label><input type="text" name="src" placeholder="请输入起点：城市+地址"><br/>
+            <label>终点: </label><input type="text" name="des" placeholder="请输入终点：城市+地址"><br/>
+            <label>车速: </label><input type="text" name="vs_h" placeholder="60，单位km/h"><br/>
+            <label>时间: </label><input type="text" name="base_time" placeholder="格式：2020-01-17 8:05:50"><br/>
+            <label>策略: </label><input type="text" name="strategy" placeholder="高速优先/躲避拥堵/避免收费"><br/>
+            <input type="submit" value="submit">
+        </form>
+    </div>
+    <form action="http://localhost:8000/download" method="get">
+            <button type="button" id="btn1">下载一个zip（方法1）</button>
+    </form>
+</div>
+<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.15&key="></script>
+<script>
+
+
+var lineArr = {{list}};
+var marker
+
+var map = new AMap.Map("container", {
+    resizeEnable: true,
+    center:lineArr[0],
+    zoom: 17
+});
+
+marker = new AMap.Marker({
+    map: map,
+    position: lineArr[0],
+    icon: "https://webapi.amap.com/images/car.png",
+    offset: new AMap.Pixel(-26, -13),
+    autoRotation: true,
+    angle:-90,
+});
+
+
+var polyline = new AMap.Polyline({
+    map: map,
+    path: lineArr,
+    showDir:true,
+    strokeColor: "#28F",
+    strokeOpacity: 1,
+    strokeWeight: 6,
+});
+
+var passedPolyline = new AMap.Polyline({
+    map: map,
+    strokeColor: "#AF5",
+    strokeWeight: 6,
+});
+
+
+marker.on('moving', function (e) {
+    passedPolyline.setPath(e.passedPath);
+});
+
+map.setFitView();
+
+
+function pauseAnimation () {
+    marker.pauseMove();
+}
+
+function resumeAnimation () {
+    marker.resumeMove();
+}
+
+function stopAnimation () {
+    marker.stopMove();
+}
+
+function startAnimation () {
+ marker.moveAlong(lineArr, {{vsh}});
+}
+
+</script>
+</body>
+</html>

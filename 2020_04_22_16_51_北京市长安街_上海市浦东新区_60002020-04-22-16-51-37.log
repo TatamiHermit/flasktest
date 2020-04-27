@@ -1,0 +1,24 @@
+[2020-04-22 16:51:37,874][INFO] ## step 1/13
+[2020-04-22 16:51:39,084][INFO] ## get_polyline time cost is 1.21 s
+[2020-04-22 16:51:39,084][INFO] ## step 2/13
+[2020-04-22 16:51:39,103][INFO] ## get_gcj02_location time cost is 0.019 s
+[2020-04-22 16:51:39,103][INFO] ## step 3/13
+[2020-04-22 16:51:43,561][INFO] ## gcj02_interpolation time cost is 4.458 s
+[2020-04-22 16:51:43,561][INFO] ## step 4/13
+[2020-04-22 16:51:43,563][INFO] ## get_linearr time cost is 0.002 s
+[2020-04-22 16:51:43,563][INFO] ## step 6/13
+[2020-04-22 16:51:43,655][INFO] ## get_wgs84_location time cost is 0.092 s
+[2020-04-22 16:51:43,655][INFO] ## step 7/13
+[2020-04-22 16:51:48,147][INFO] ## wgs84_interpolation time cost is 4.492 s
+[2020-04-22 16:51:48,148][INFO] ## step 8/13
+[2020-04-22 16:51:48,624][INFO] ## datetime_to_msg time cost is 0.476 s
+[2020-04-22 16:51:48,624][INFO] ## step 9/13
+[2020-04-22 16:51:48,937][INFO] ## angle_to_msg time cost is 0.313 s
+[2020-04-22 16:51:48,937][INFO] ## step 11/13
+[2020-04-22 16:51:49,182][INFO] ## lon_to_msg time cost is 0.245 s
+[2020-04-22 16:51:49,182][INFO] ## step 10/13
+[2020-04-22 16:51:49,438][INFO] ## lat_to_msg time cost is 0.257 s
+[2020-04-22 16:51:49,438][INFO] ## step 12/13
+[2020-04-22 16:51:49,463][INFO] ## merge_message time cost is 0.025 s
+[2020-04-22 16:51:49,463][INFO] ## step 13/13
+[2020-04-22 16:51:49,527][INFO] ## msg_to_asc time cost is 0.064 s
